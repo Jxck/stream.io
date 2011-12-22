@@ -1,0 +1,14 @@
+{
+  "author": "Jxck",
+  "name": "stream.io",
+  "description": "stream base web application framework",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~0.6.1"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
