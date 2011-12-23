@@ -1,6 +1,6 @@
 var util = require('util')
-  , stream = require('stream')
-  ;
+  , stream = require('stream');
+
 
 function ReadLineFilter() {
   this.writable = true;
@@ -20,6 +20,7 @@ ReadLineFilter.prototype.write = function(data) {
   if (data) {
     this.line += data;
     while (this.line.match(/\r?\n/)) {
+      console.log(RegExp.leftContext + '\n');
       this.emit('data', RegExp.leftContext + '\n');
       this.line = RegExp.rightContext;
     }
