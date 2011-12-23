@@ -24,12 +24,7 @@ io.configure('development', function() {
 });
 
 io.sockets.on('connection', function(socket) {
-  log('connected');
-  var readable = fs.createReadStream('sample.log', {encoding: 'utf-8'})
-    , readline = new ReadLineFilter()
-    , client = new ClientStream(socket)
-    ;
-  readable.resume();
-  readable.pipe(readline).pipe(client);
+  // TODO
+  client.pipe(filter).pipe(client);
 });
 

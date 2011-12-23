@@ -1,14 +1,19 @@
-var socket = io.connect();
+var server = stream.io.server();
 
-$(function() {
-  $('#ok').click(function() {
-    var msg = $('#msg').val();
-    socket.emit('msg send', msg);
-  });
-});
+// TODO
+inputStrem.pipe(server);
 
-socket.on('msg push', function(data) {
-  console.log(data);
-  $li = $('<li>').text(data);
-  $('#display').append($li);
-});
+//var socket = io.connect();
+
+// $(function() {
+//   $('#ok').click(function() {
+//     var msg = $('#msg').val();
+//     socket.emit('msg send', msg);
+//   });
+// });
+
+// socket.on('msg push', function(data) {
+//   console.log(data);
+//   $li = $('<li>').text(data);
+//   $('#display').append($li);
+// });
