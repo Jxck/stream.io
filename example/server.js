@@ -6,7 +6,10 @@ var connect = require('connect')
   , stream = require('stream');
 
 
-var ReadLineFilter = require('./readLineFilter');
+var ReadLineFilter = require('./readLineFilter')
+  , ClientStream = require('./clientStream')
+  ;
+
 var readable = fs.createReadStream('sample.log', {encoding: 'utf-8'})
   , readline = new ReadLineFilter();
 
@@ -20,25 +23,13 @@ var server = connect.createServer(
 
 var io = require('socket.io').listen(server);
 
-var ClientStream = function(socket) {
-  this.socket = socket;
-  this.writable = true;
-};
-
-ClientStream.prototype.write = function(data) {
-  this.socket.emit('msg push', data);
-  return true;
-};
-
-ClientStream.prototype.end = function() {
-  this.writable = false;
-};
-
 io.sockets.on('connection', function(socket) {
+  log('connected');
+
   var client = new ClientStream(socket);
   readable.resume();
   readable.pipe(readline).pipe(client);
-  log('connected');
+
   socket.emit('msg push', 'data');
   socket.on('msg send', function(msg) {
     log(msg);
