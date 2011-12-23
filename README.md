@@ -5,6 +5,11 @@ strema.io is stream base web application framework
 main motivation is make "Server" and "Client" to "Stream"
 
 
+## idea sheet
+
+![Sream.IO](https://github.com/Jxck/stream.io/raw/master/image/stream.io.jpg-large)
+
+
 ## ClientStream
 
 make client to stream
