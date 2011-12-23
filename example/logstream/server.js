@@ -8,7 +8,7 @@ var io = require('socket.io')
 
 
 var ReadLineFilter = require('./readLineFilter')
-  , ClientStream = require('./clientStream')
+  , ClientStream = require('../clientStream')
   ;
 
 var server = connect.createServer(
