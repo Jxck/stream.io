@@ -9,6 +9,10 @@
   "engines": {
     "node": "~0.6.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "socket.io" : "*",
+    "socket.io-client": "*",
+    "connect": "*"
+  },
   "devDependencies": {}
 }
