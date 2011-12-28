@@ -30,6 +30,7 @@ ClientStream.prototype.pipe = function() {
  */
 ClientStream.prototype.write = function(data) {
   this.socket.emit('msg push', data);
+  this.socket.broadcast.emit('msg push', data);
   return true;
 };
 
