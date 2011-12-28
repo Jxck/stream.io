@@ -1,0 +1,9 @@
+[submodule "support/events"]
+	path = support/events
+	url = https://Jxck@github.com/Jxck/events.git
+[submodule "support/stream"]
+	path = support/stream
+	url = https://Jxck@github.com/Jxck/stream.git
+[submodule "support/assert"]
+	path = support/assert
+	url = https://Jxck@github.com/Jxck/assert.git
