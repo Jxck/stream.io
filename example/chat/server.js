@@ -6,14 +6,11 @@ var io = require('socket.io')
   , util = require('util')
   , stream = require('stream');
 
-
-var ReadLineFilter = require('./readLineFilter')
-  , ClientStream = require('../clientStream')
-  ;
+var ClientStream = require('./lib/clientStream');
 
 var server = connect.createServer(
     connect.logger()
-  , connect.static(__dirname)
+  , connect.static(__dirname + '/public')
 ).listen(3000);
 
 io = io.listen(server);
@@ -24,7 +21,10 @@ io.configure('development', function() {
 });
 
 io.sockets.on('connection', function(socket) {
+  var client = new ClientStream(socket);
   // TODO
-  client.pipe(filter).pipe(client);
+  // client.pipe(broadcast).pipe(client);
+  client.resume();
+  client.pipe(client);
 });
 
