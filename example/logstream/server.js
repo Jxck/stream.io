@@ -7,13 +7,13 @@ var io = require('socket.io')
   , stream = require('stream');
 
 
-var ReadLineFilter = require('./readLineFilter')
-  , ClientStream = require('./clientStream')
+var ReadLineFilter = require('./lib/readLineFilter')
+  , ClientStream = require('./lib/clientStream')
   ;
 
 var server = connect.createServer(
     connect.logger()
-  , connect.static(__dirname)
+  , connect.static(__dirname + '/public')
 ).listen(3000);
 
 io = io.listen(server);
@@ -32,4 +32,3 @@ io.sockets.on('connection', function(socket) {
   readable.resume();
   readable.pipe(readline).pipe(client);
 });
-

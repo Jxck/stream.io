@@ -1,7 +1,6 @@
 var util = require('util')
   , stream = require('stream');
 
-
 function ReadLineFilter() {
   this.writable = true;
   this.readable = true;
