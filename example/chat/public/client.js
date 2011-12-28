@@ -4,11 +4,11 @@ var socket = io.connect();
 $(function() {
   var server = new ServerStream(io);
   var input = new InputStream($);
-  var display = new DisplayStream($);
+  var output = new OutputStream($);
 
   server.resume();
   input.resume();
 
   input.pipe(server);
-  server.pipe(display);
+  server.pipe(output);
 });
