@@ -7,7 +7,7 @@
     "url": ""
   },
   "engines": {
-    "node": "~0.6.1"
+    "node": "*"
   },
   "dependencies": {
     "socket.io" : "*",
