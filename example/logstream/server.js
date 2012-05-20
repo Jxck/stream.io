@@ -11,10 +11,9 @@ var ReadLineFilter = require('./lib/readLineFilter')
   , ClientStream = require('./lib/clientStream')
   ;
 
-var server = connect.createServer(
-    connect.logger()
-  , connect.static(__dirname + '/public')
-).listen(3000);
+var server = connect()
+  .use(connect.static(__dirname + '/public'))
+  .listen(3000);
 
 io = io.listen(server);
 
