@@ -1,3 +1,7 @@
+var Stream = require('stream')
+  , util = require('util')
+  ;
+
 function ReadableStream() {
   /**
    * A boolean that is true by default, but turns false after an 'error' occurred,
@@ -7,7 +11,7 @@ function ReadableStream() {
   this.encoding = 'utf8';
 }
 
-util.inherits(ReadableStream, stream.Stream);
+util.inherits(ReadableStream, Stream);
 
 
 /**
@@ -17,7 +21,6 @@ util.inherits(ReadableStream, stream.Stream);
 ReadableStream.prototype.setEncoding = function(encoding) {
   this.encoding = encoding;
 };
-
 
 /**
  * Pauses the incoming 'data' events.
@@ -52,8 +55,10 @@ ReadableStream.prototype.destroySoon = function() {
  * This is a Stream.prototype method available on all Streams.
  */
 ReadableStream.prototype.pipe = function(writable /*, [options]*/) {
-  stream.Stream.prototype.pipe.apply(this, arguments);
+  Stream.prototype.pipe.apply(this, arguments);
 };
+
+module.exports = ReadableStream;
 
 var readable = new ReadableStream();
 

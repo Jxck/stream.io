@@ -1,3 +1,7 @@
+var Stream = require('stream')
+  , util = require('util')
+  ;
+
 function WritableStream() {
   /**
    * A boolean that is true by default, but turns false after an 'error' occurred
@@ -61,8 +65,9 @@ WritableStream.prototype.destroySoon = function() {
 
 };
 
-var writable = new WritableStream();
+module.exports = WritableStream;
 
+var writable = new WritableStream();
 
 /**
  * Event: 'drain'

@@ -1,5 +1,6 @@
-
-
+var Stream = require('stream')
+  , util = require('util')
+  ;
 
 function ReadableStream() {
   /**
@@ -20,7 +21,6 @@ util.inherits(ReadableStream, stream.Stream);
 ReadableStream.prototype.setEncoding = function(encoding) {
   this.encoding = encoding;
 };
-
 
 /**
  * Pauses the incoming 'data' events.
