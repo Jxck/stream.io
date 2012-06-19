@@ -11,7 +11,7 @@ function ClientStream(server) {
     this.io.set('log level', 1);
     this.io.set('transports', ['websocket']);
   }.bind(this));
-  this.io.on('connection', function() {
+  this.io.on('connection', function(socket) {
     console.log('connected');
     this.writable = true;
   }.bind(this));
@@ -24,7 +24,7 @@ ClientStream.prototype.write = function(data) {
 
   }
 log(data);
-  this.io.emit('msg push', data);
+  this.io.sockets.emit('msg push', data);
   return true;
 };
 

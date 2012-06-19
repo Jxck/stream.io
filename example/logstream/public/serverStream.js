@@ -11,7 +11,10 @@ ServerStream.prototype.resume = function() {
   }.bind(this));
 };
 
-ServerStream.prototype.pipe = function() {
+ServerStream.prototype.pipe = function(dest) {
   this.piped = true;
-  stream.Stream.prototype.pipe.apply(this, arguments);
+  this.dest = dest;
+  this.on('data', function(data) {
+    this.dest.write(data);
+  });
 };
