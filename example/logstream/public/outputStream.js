@@ -6,6 +6,6 @@ function OutputStream($) {
 util.inherits(OutputStream, stream.Stream);
 
 OutputStream.prototype.write = function(data) {
-  this.$log.append(data);
+  this.$log.prepend(data);
   return true;
 };
