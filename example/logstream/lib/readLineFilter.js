@@ -33,16 +33,6 @@ ReadLineFilter.prototype.end = function() {
   this.emit('end');
 };
 
-ReadLineFilter.prototype.pipe = function(dest) {
-  this.piped = true;
-  this.dest = dest;
-
-  // stream.Stream.prototype.pipe.apply(this, arguments);
-  this.on('data', function(data) {
-    this.dest.write(data);
-  });
-};
-
 ReadLineFilter.prototype.resume = function() {};
 
 ReadLineFilter.prototype.pause = function() {};

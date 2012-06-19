@@ -23,8 +23,21 @@ ClientStream.prototype.write = function(data) {
   if(!this.writable) {
 
   }
+log(data);
   this.io.emit('msg push', data);
   return true;
 };
+
+ClientStream.prototype.end = function() {};
+
+ClientStream.prototype.resume = function() {};
+
+ClientStream.prototype.pause = function() {};
+
+ClientStream.prototype.setEncoding = function(encoding) {};
+
+ClientStream.prototype.destroy = function() {};
+
+ClientStream.prototype.destroySoon = function() {};
 
 module.exports = ClientStream;
