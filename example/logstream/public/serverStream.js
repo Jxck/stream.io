@@ -14,6 +14,13 @@ ServerStream.prototype.resume = function() {
 ServerStream.prototype.pipe = function(dest) {
   this.piped = true;
   this.dest = dest;
+  if(typeof dest === 'string') {
+    this.dest = {
+      write: function(data) {
+        $(dest).text(data);
+      }
+    }
+  }
   this.on('data', function(data) {
     this.dest.write(data);
   });
