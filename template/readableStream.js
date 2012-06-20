@@ -94,6 +94,6 @@ readable.on('error', function(exception) {
  * Not all streams will emit this.
  * (For example, an incoming HTTP request will not emit 'close'.)
  */
-readable.on('clone', function() {
+readable.on('close', function() {
 
 });
