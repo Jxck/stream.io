@@ -1,8 +1,8 @@
 var log = console.log.bind(console);
 
 $(function() {
-  var server = new ServerStream(io);
-  var output = new OutputStream($);
+  var server = new ServerReadableStream(io);
+  var output = new OutputWritableStream($);
   server.resume();
   //server.pipe(output);
   //server.on('data', function(data) {

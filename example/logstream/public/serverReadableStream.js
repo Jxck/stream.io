@@ -1,17 +1,17 @@
-function ServerStream(io) {
+function ServerReadableStream(io) {
   this.socket = io.connect();
   this.readable = true;
 };
 
-util.inherits(ServerStream, stream.Stream);
+util.inherits(ServerReadableStream, stream.Stream);
 
-ServerStream.prototype.resume = function() {
+ServerReadableStream.prototype.resume = function() {
   this.socket.on('msg push', function(data) {
     this.emit('data', data);
   }.bind(this));
 };
 
-ServerStream.prototype.pipe = function(dest) {
+ServerReadableStream.prototype.pipe = function(dest) {
   this.piped = true;
   this.dest = dest;
   if(typeof dest === 'string') {

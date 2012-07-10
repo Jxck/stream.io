@@ -1,11 +1,11 @@
-function OutputStream($) {
+function OutputWritableStream($) {
   this.writable = true;
   this.$log = $('#log');
 };
 
-util.inherits(OutputStream, stream.Stream);
+util.inherits(OutputWritableStream, stream.Stream);
 
-OutputStream.prototype.write = function(data) {
+OutputWritableStream.prototype.write = function(data) {
   this.$log.prepend(data);
   return true;
 };
