@@ -9,7 +9,7 @@ function BufferedFilter(interval) {
   this.interval = interval * 100 || 1000;
 
   this.fn = function() {
-    if(this.buf.length !== 0) {
+    if (this.buf.length !== 0) {
       var data = this.buf.shift();
       this.emit('data', data);
     }

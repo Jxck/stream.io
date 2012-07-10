@@ -5,7 +5,7 @@ var util = require('util')
 
 function ClientStream(server) {
   writable.call(this);
-  this.server= server;
+  this.server = server;
   this.io = io.listen(server);
   this.io.configure('development', function() {
     this.io.set('log level', 1);
@@ -15,12 +15,12 @@ function ClientStream(server) {
     console.log('connected');
     this.writable = true;
   }.bind(this));
-};
+}
 
 util.inherits(ClientStream, writable);
 
 ClientStream.prototype.write = function(data) {
-  if(!this.writable) {
+  if (!this.writable) {
     // TODO
   }
   this.io.sockets.emit('msg push', data);
