@@ -4,6 +4,7 @@ function ReadableStream() {
    * the stream came to an 'end', or destroy() was called.
    */
   this.readable = true;
+  this.encoding = 'utf8';
 }
 
 util.inherits(ReadableStream, stream.Stream);
@@ -51,7 +52,7 @@ ReadableStream.prototype.destroySoon = function() {
  * This is a Stream.prototype method available on all Streams.
  */
 ReadableStream.prototype.pipe = function(writable /*, [options]*/) {
-
+  stream.Stream.prototype.pipe.apply(this, arguments);
 };
 
 var readable = new ReadableStream();
@@ -91,5 +92,3 @@ readable.on('error', function(exception) {
 readable.on('clone', function() {
 
 });
-
-
