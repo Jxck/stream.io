@@ -1,11 +1,10 @@
+log = console.log.bind(console);
 var util = require('util')
+  , filter = require('../../../lib/filterStream')
   , stream = require('stream');
 
 function BufferedFilter(interval) {
-  this.writable = true;
-  this.readable = true;
-  this.piped = false;
-  this.dest = null;
+  filter.call(this);
   this.buf = [];
   this.interval = interval * 100 || 1000;
 
@@ -19,7 +18,7 @@ function BufferedFilter(interval) {
   setInterval(this.fn, this.interval);
 }
 
-util.inherits(BufferedFilter, stream.Stream);
+util.inherits(BufferedFilter, filter);
 
 /**
  * Writable Stream Interface
@@ -35,22 +34,7 @@ BufferedFilter.prototype.pipe = function(dest) {
   this.piped = true;
   this.dest = dest;
 
-  // stream.Stream.prototype.pipe.apply(this, arguments);
-  this.on('data', function(data) {
-    this.dest.write(data);
-  });
+  filter.prototype.pipe.apply(this, arguments);
 };
-
-BufferedFilter.prototype.end = function() {};
-
-BufferedFilter.prototype.resume = function() {};
-
-BufferedFilter.prototype.pause = function() {};
-
-BufferedFilter.prototype.setEncoding = function(encoding) {};
-
-BufferedFilter.prototype.destroy = function() {};
-
-BufferedFilter.prototype.destroySoon = function() {};
 
 module.exports = BufferedFilter;
