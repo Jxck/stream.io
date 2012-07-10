@@ -32,4 +32,14 @@ ReadLineFilter.prototype.end = function() {
   this.emit('end');
 };
 
+ReadLineFilter.prototype.resume = function() {};
+
+ReadLineFilter.prototype.pause = function() {};
+
+ReadLineFilter.prototype.setEncoding = function(encoding) {};
+
+ReadLineFilter.prototype.destroy = function() {};
+
+ReadLineFilter.prototype.destroySoon = function() {};
+
 module.exports = ReadLineFilter;
