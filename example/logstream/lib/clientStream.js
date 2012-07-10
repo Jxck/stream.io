@@ -1,10 +1,10 @@
 var util = require('util')
-  , stream = require('stream')
+  , writable = require('../../../lib/writableStream')
   , io = require('socket.io')
   ;
 
 function ClientStream(server) {
-  this.writable = false;
+  writable.call(this);
   this.server= server;
   this.io = io.listen(server);
   this.io.configure('development', function() {
@@ -17,26 +17,14 @@ function ClientStream(server) {
   }.bind(this));
 };
 
-util.inherits(ClientStream, stream.Stream);
+util.inherits(ClientStream, writable);
 
 ClientStream.prototype.write = function(data) {
   if(!this.writable) {
-
+    // TODO
   }
   this.io.sockets.emit('msg push', data);
   return true;
 };
-
-ClientStream.prototype.end = function() {};
-
-ClientStream.prototype.resume = function() {};
-
-ClientStream.prototype.pause = function() {};
-
-ClientStream.prototype.setEncoding = function(encoding) {};
-
-ClientStream.prototype.destroy = function() {};
-
-ClientStream.prototype.destroySoon = function() {};
 
 module.exports = ClientStream;
