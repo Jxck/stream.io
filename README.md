@@ -61,4 +61,4 @@ server.pipe(output);
 ## TODO
 
 * impliment client side Stream
-
+* make some example
