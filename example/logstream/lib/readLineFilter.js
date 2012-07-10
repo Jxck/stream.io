@@ -1,6 +1,6 @@
+log = console.log.bind(console);
 var util = require('util')
-  , stream = require('stream')
-  , filter = require('./filter')
+  , filter = require('../../../lib/filterStream')
   ;
 
 function ReadLineFilter() {
