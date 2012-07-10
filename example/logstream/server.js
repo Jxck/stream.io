@@ -1,10 +1,8 @@
 // Server
 log = console.log.bind(console);
-var io = require('socket.io')
-  , connect = require('connect')
+var connect = require('connect')
   , fs = require('fs')
-  , util = require('util')
-  , stream = require('stream');
+  ;
 
 var app = connect()
   .use(connect.static(__dirname + '/public'))
