@@ -1,16 +1,15 @@
 var util = require('util')
-  , stream = require('stream');
+  , stream = require('stream')
+  , filter = require('./filter')
+  ;
 
 function ReadLineFilter() {
-  this.writable = true;
-  this.readable = true;
-  this.piped = false;
-  this.dest = null;
+  filter.call(this);
   this.buf = [];
   this.line = '';
 }
 
-util.inherits(ReadLineFilter, stream.Stream);
+util.inherits(ReadLineFilter, filter);
 
 /**
  * Writable Stream Interface
@@ -32,15 +31,5 @@ ReadLineFilter.prototype.end = function() {
   this.buf = '';
   this.emit('end');
 };
-
-ReadLineFilter.prototype.resume = function() {};
-
-ReadLineFilter.prototype.pause = function() {};
-
-ReadLineFilter.prototype.setEncoding = function(encoding) {};
-
-ReadLineFilter.prototype.destroy = function() {};
-
-ReadLineFilter.prototype.destroySoon = function() {};
 
 module.exports = ReadLineFilter;
