@@ -3,6 +3,9 @@ var util = require('util')
   , filter = require('../../../lib/filterStream')
   , stream = require('stream');
 
+/**
+ * Buffering Data & emitting it per interval
+ */
 function BufferedFilter(interval) {
   filter.call(this);
   this.buf = [];
@@ -31,9 +34,6 @@ BufferedFilter.prototype.write = function(data) {
 };
 
 BufferedFilter.prototype.pipe = function(dest) {
-  this.piped = true;
-  this.dest = dest;
-
   filter.prototype.pipe.apply(this, arguments);
 };
 

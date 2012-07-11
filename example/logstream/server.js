@@ -13,7 +13,7 @@ var ReadLineFilter = require('./lib/readLineFilter')
   , BufferedFilter = require('./lib/bufferedFilter')
   ;
 
-var readable = fs.createReadStream('sample.log', {encoding: 'utf-8'})
+var readable = fs.createReadStream('sample.log', { encoding: 'utf-8' })
   , readline = new ReadLineFilter()
   , client = new ClientStream(app)
   , buffer = new BufferedFilter(1)
