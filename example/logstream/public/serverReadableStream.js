@@ -7,6 +7,7 @@ function ServerReadableStream(io) {
 util.inherits(ServerReadableStream, Readable);
 
 ServerReadableStream.prototype.resume = function() {
+  Readable.prototype.resume.apply(this, arguments);
   this.socket.on('msg push', function(data) {
     this.emit('data', data);
   }.bind(this));
