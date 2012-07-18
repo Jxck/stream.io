@@ -1,4 +1,3 @@
-log = console.log.bind(console);
 var util = require('util')
   , filter = require('../../../lib/filterStream')
   , stream = require('stream');
@@ -31,10 +30,6 @@ BufferedFilter.prototype.write = function(data) {
     this.buf.push(data);
   }
   return true;
-};
-
-BufferedFilter.prototype.pipe = function(dest) {
-  filter.prototype.pipe.apply(this, arguments);
 };
 
 module.exports = BufferedFilter;

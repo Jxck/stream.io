@@ -1,4 +1,3 @@
-log = console.log.bind(console);
 var util = require('util')
   , filter = require('../../../lib/filterStream')
   ;
@@ -26,20 +25,9 @@ ReadLineFilter.prototype.write = function(data) {
 };
 
 ReadLineFilter.prototype.end = function() {
-  this.writable = false;
   this.line = '';
   this.buf = '';
-  this.emit('end');
+  filter.prototype.end.call(this, arguments);
 };
-
-ReadLineFilter.prototype.resume = function() {};
-
-ReadLineFilter.prototype.pause = function() {};
-
-ReadLineFilter.prototype.setEncoding = function(encoding) {};
-
-ReadLineFilter.prototype.destroy = function() {};
-
-ReadLineFilter.prototype.destroySoon = function() {};
 
 module.exports = ReadLineFilter;
