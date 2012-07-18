@@ -1,19 +1,16 @@
+var Readable = this['stream.io'].Readable;
 function InputStream($) {
+  Readable.call(this);
   this.$ok = $('#ok');
   this.$msg = $('#msg');
-  this.readable = true;
 };
 
-util.inherits(InputStream, stream.Stream);
+util.inherits(InputStream, Readable);
 
 InputStream.prototype.resume = function() {
+  Readable.prototype.resume.apply(this, arguments);
   this.$ok.click(function() {
     var msg = this.$msg.val();
     this.emit('data', msg);
   }.bind(this));
-};
-
-InputStream.prototype.pipe = function() {
-  this.piped = true;
-  stream.Stream.prototype.pipe.apply(this, arguments);
 };

@@ -1,12 +1,14 @@
+var Writable = this['stream.io'].Writable;
 function OutputStream($) {
-  this.writable = true;
+  Writable.call(this);
   this.$ = $;
   this.$display = $('#display');
 };
 
-util.inherits(OutputStream, stream.Stream);
+util.inherits(OutputStream, Writable);
 
 OutputStream.prototype.write = function(data) {
+  Writable.prototype.write.apply(this, arguments);
   var $li = this.$('<li>').text(data);
   this.$display.append($li);
   return true;

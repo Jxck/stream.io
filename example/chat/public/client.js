@@ -1,6 +1,4 @@
-var log = console.log.bind(console);
-var socket = io.connect();
-
+log = console.log.bind(console);
 $(function() {
   var server = new ServerStream(io);
   var input = new InputStream($);
