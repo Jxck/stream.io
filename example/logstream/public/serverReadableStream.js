@@ -2,7 +2,6 @@ var Readable = this['stream.io'].Readable;
 function ServerReadableStream(io) {
   Readable.call(this);
   this.socket = io.connect();
-  this.readable = true;
 };
 
 util.inherits(ServerReadableStream, Readable);
@@ -14,8 +13,7 @@ ServerReadableStream.prototype.resume = function() {
 };
 
 ServerReadableStream.prototype.pipe = function(dest) {
-  this.piped = true;
-  this.dest = dest;
+  Readable.prototype.pipe.apply(this, arguments);
   if(typeof dest === 'string') {
     this.dest = {
       write: function(data) {
@@ -23,7 +21,4 @@ ServerReadableStream.prototype.pipe = function(dest) {
       }
     }
   }
-  this.on('data', function(data) {
-    this.dest.write(data);
-  });
 };
