@@ -1,5 +1,5 @@
 // Server
-var log = console.log.bind(console);
+log = console.log.bind(console);
 var io = require('socket.io')
   , connect = require('connect')
   , fs = require('fs')
