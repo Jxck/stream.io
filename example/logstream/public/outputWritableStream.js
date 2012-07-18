@@ -3,7 +3,7 @@ function OutputWritableStream($) {
   Writable.call(this);
   this.writable = true;
   this.$log = $('#log');
-};
+}
 
 util.inherits(OutputWritableStream, Writable);
 
