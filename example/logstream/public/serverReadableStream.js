@@ -1,9 +1,11 @@
+var Readable = this['stream.io'].Readable;
 function ServerReadableStream(io) {
+  Readable.call(this);
   this.socket = io.connect();
   this.readable = true;
 };
 
-util.inherits(ServerReadableStream, stream.Stream);
+util.inherits(ServerReadableStream, Readable);
 
 ServerReadableStream.prototype.resume = function() {
   this.socket.on('msg push', function(data) {

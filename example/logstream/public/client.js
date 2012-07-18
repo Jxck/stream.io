@@ -1,5 +1,3 @@
-var log = console.log.bind(console);
-
 $(function() {
   var server = new ServerReadableStream(io);
   var output = new OutputWritableStream($);
