@@ -22,10 +22,8 @@ function BufferedFilter(interval) {
 
 util.inherits(BufferedFilter, filter);
 
-/**
- * Writable Stream Interface
- */
 BufferedFilter.prototype.write = function(data) {
+  filter.prototype.write.apply(this, arguments);
   if (data) {
     this.buf.push(data);
   }

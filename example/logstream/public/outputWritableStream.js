@@ -8,6 +8,7 @@ function OutputWritableStream($) {
 util.inherits(OutputWritableStream, Writable);
 
 OutputWritableStream.prototype.write = function(data) {
+  Writable.prototype.write.apply(this, arguments);
   this.$log.prepend(data);
   return true;
 };

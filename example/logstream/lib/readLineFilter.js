@@ -25,9 +25,9 @@ ReadLineFilter.prototype.write = function(data) {
 };
 
 ReadLineFilter.prototype.end = function() {
+  filter.prototype.end.apply(this, arguments);
   this.line = '';
   this.buf = '';
-  filter.prototype.end.call(this, arguments);
 };
 
 module.exports = ReadLineFilter;

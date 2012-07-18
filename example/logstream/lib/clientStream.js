@@ -20,6 +20,7 @@ function ClientStream(server) {
 util.inherits(ClientStream, writable);
 
 ClientStream.prototype.write = function(data) {
+  writable.prototype.write.apply(this, arguments);
   if (!this.writable) {
     // TODO
   }
