@@ -1,23 +1,20 @@
+var Filter = this['stream.io'].Filter;
 function ServerStream(io) {
+  Filter.call(this);
   this.socket = io.connect();
-  this.readable = true;
-  this.writable = true;
 };
 
-util.inherits(ServerStream, stream.Stream);
+util.inherits(ServerStream, Filter);
 
 ServerStream.prototype.resume = function() {
+  Filter.prototype.resume.apply(this, arguments);
   this.socket.on('msg push', function(data) {
     this.emit('data', data);
   }.bind(this));
 };
 
-ServerStream.prototype.pipe = function() {
-  this.piped = true;
-  stream.Stream.prototype.pipe.apply(this, arguments);
-};
-
 ServerStream.prototype.write = function(data) {
+  Filter.prototype.write.apply(this, arguments);
   this.socket.emit('msg send', data);
   return true;
 };
