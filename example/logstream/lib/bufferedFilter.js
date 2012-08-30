@@ -1,6 +1,6 @@
 var util = require('util')
   , filter = require('../../../lib/filterStream')
-  , stream = require('stream');
+  ;
 
 /**
  * Buffering Data & emitting it per interval

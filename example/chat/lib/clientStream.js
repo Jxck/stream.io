@@ -16,11 +16,11 @@ function ClientStream(server) {
     console.log('connected');
     this.writable = true;
     socket.on('msg send', function(data) {
-      log('msg send',data);
+      log('msg send', data);
       this.emit('data', data);
     }.bind(this));
   }.bind(this));
-};
+}
 
 
 util.inherits(ClientStream, filter);
