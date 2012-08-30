@@ -1,36 +1,36 @@
+log = console.log.bind(console);
 var util = require('util')
-  , stream = require('stream')
-  , log = console.log.bind(console);
+   , filter = require('../../../lib/filterStream')
+   , io = require('socket.io')
+   ;
 
-function ClientStream(socket) {
-  this.socket = socket;
-  this.readable = true;
-  this.writable = true;
-};
-
-util.inherits(ClientStream, stream.Stream);
-
-/**
- * Readable Stream
- */
-ClientStream.prototype.resume = function() {
-  this.socket.on('msg send', function(data) {
-    this.emit('data', data);
+function ClientStream(server) {
+  filter.call(this);
+  this.server = server;
+  this.io = io.listen(server);
+  this.io.configure('development', function() {
+    this.io.set('log level', 1);
+    this.io.set('transports', ['websocket']);
+  }.bind(this));
+  this.io.on('connection', function(socket) {
+    console.log('connected');
+    this.writable = true;
+    socket.on('msg send', function(data) {
+      log('msg send',data);
+      this.emit('data', data);
+    }.bind(this));
   }.bind(this));
 };
 
-ClientStream.prototype.pipe = function() {
-  this.piped = true;
-  stream.Stream.prototype.pipe.apply(this, arguments);
-};
+
+util.inherits(ClientStream, filter);
 
 
 /**
  * Writable Stream
  */
 ClientStream.prototype.write = function(data) {
-  this.socket.emit('msg push', data);
-  this.socket.broadcast.emit('msg push', data);
+  this.io.sockets.emit('msg push', data);
   return true;
 };
 
