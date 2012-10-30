@@ -8,13 +8,13 @@ util.inherits(ServerStream, Filter);
 
 ServerStream.prototype.resume = function() {
   Filter.prototype.resume.apply(this, arguments);
-  this.socket.on('msg push', function(data) {
+  this.socket.on('message', function(data) {
     this.emit('data', data);
   }.bind(this));
 };
 
 ServerStream.prototype.write = function(data) {
   Filter.prototype.write.apply(this, arguments);
-  this.socket.emit('msg send', data);
+  this.socket.emit('message', data);
   return true;
 };

@@ -15,8 +15,8 @@ function ClientStream(server) {
   this.io.on('connection', function(socket) {
     console.log('connected');
     this.writable = true;
-    socket.on('msg send', function(data) {
-      log('msg send', data);
+    socket.on('message', function(data) {
+      log('message', data);
       this.emit('data', data);
     }.bind(this));
   }.bind(this));
@@ -30,7 +30,7 @@ util.inherits(ClientStream, filter);
  * Writable Stream
  */
 ClientStream.prototype.write = function(data) {
-  this.io.sockets.emit('msg push', data);
+  this.io.sockets.emit('message', data);
   return true;
 };
 
