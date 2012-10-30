@@ -15,8 +15,8 @@ var ReadLineFilter = require('./lib/readLineFilter')
 
 var readable = fs.createReadStream('sample.log', { encoding: 'utf-8' })
   , readline = new ReadLineFilter()
-  , client = new ClientStream(app)
   , buffer = new BufferedFilter(1)
+  , client = new ClientStream(app)
   ;
 
 
